@@ -204,6 +204,11 @@
                 $scope.startDownload();
             }
         };
+		$scope.changeUrls = function (event) {
+            var urlArr = $scope.context.urls.split('\n');
+			var urls = urlArr.map(l => thunderLinkConversion(l)).join('\n');
+			$scope.context.urls = urls;
+        };
 
         $scope.getValidUrlsCount = function () {
             var urls = ariaNgCommonService.parseUrlsFromOriginInput($scope.context.urls);
@@ -213,3 +218,14 @@
         $rootScope.loadPromise = $timeout(function () {}, 100);
     }]);
 }());
+
+function thunderLinkConversion(str) {
+    try {
+        if (!/^thunder\:\/\//i.test(str)) return str;
+        var bUrl = str.match(/(^thunder\:\/\/)(.+)/i)[2];
+        var url = atob(bUrl).replace(/^AA/, '').replace(/ZZ$/, '');
+        return url;
+    } catch (error) {
+        return str;
+    }
+}
