@@ -2,6 +2,7 @@
 
 add ThunderLink automatic conversion to original link. <br />
 `Releases` dir to download builded. <br />
+Any `issues` or `pr` please to main branch https://github.com/mayswind/AriaNg
 
 # AriaNg
 
