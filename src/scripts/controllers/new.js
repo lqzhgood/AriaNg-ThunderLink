@@ -204,10 +204,11 @@
                 $scope.startDownload();
             }
         };
-		$scope.changeUrls = function (event) {
-            var urlArr = $scope.context.urls.split('\n');
-			var urls = urlArr.map(l => thunderLinkConversion(l)).join('\n');
+		$scope.changeUrls = function (event) { 
+			var urlArr = $scope.context.urls.split('\n');
+			var urls = urlArr.map(function(l){return thunderLinkConversion(l)}).join('\n');
 			$scope.context.urls = urls;
+
         };
 
         $scope.getValidUrlsCount = function () {
@@ -219,6 +220,7 @@
     }]);
 }());
 
+
 function thunderLinkConversion(str) {
     try {
         if (!/^thunder\:\/\//i.test(str)) return str;
@@ -229,3 +231,4 @@ function thunderLinkConversion(str) {
         return str;
     }
 }
+ 
